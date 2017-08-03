@@ -103,7 +103,8 @@ void play(struct sudoku * game, int color_mode){
 			break;
 		}
 	}
-
+	
+	free_sudoku(&game);
 }
 
 // allow the player to input a sudoku puzzle
@@ -167,7 +168,10 @@ void solve_and_display(struct sudoku * game, int color_mode){
 	solve_sudoku(game);
 	print_sudoku(game, color_mode);
 	int read = 0;
-	while((read = getch()) != 'c');	
+	mvprintw(10,0, "Press c to continue.");
+	refresh();
+	while((read = getch()) != 'c');
+	free_sudoku(&game);	
 }
 
 // menu loop 
